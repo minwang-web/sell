@@ -23,6 +23,11 @@
         <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
+    <div class="bulletin-wrapper">
+      <span class="bulletin-title"></span
+      ><span class="bulletin-text">{{ seller.bulletin }}</span>
+      <i class="icon-keyboard_arrow_right"></i>
+    </div>
   </div>
 </template>
 
@@ -40,7 +45,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" rel="stylesheet/stylus">
 @import "../../common/stylus/mixin.styl"
 
 .header
@@ -49,7 +54,7 @@ export default {
   .conten-wrapper
     position relative
     padding 24px 12px 18px 24px
-    font-size 0 //父元素设为0，每个子元素设置具体像素。为了让文字之间没有空隙
+    font-size 0 //两个span挨着时没有空白间隙：父元素设为0，子元素设置具体像素。
     .avatar
       display inline-block
       vertical-align top
@@ -116,4 +121,32 @@ export default {
         margin-left 2px
         line-height 24px
         font-size 10px
+  .bulletin-wrapper
+    position relative
+    height 28px
+    line-height 28px
+    padding 0 22px 0 12px
+    white-space nowrap // 不换行
+    overflow hidden // 溢出时隐藏
+    text-overflow ellipsis // 结合上诉两个属性使用，可实现文本溢出显示...
+    // font-size 0 这样设置会影响省略号显示，但是又想两个span没有空白间隙，可以使用在两个span之间不换行来实现
+    background rgba(7, 17, 27, 0.2)
+    .bulletin-title
+      display inline-block
+      vertical-align top
+      margin-top 7px // 图标和文字顶部对齐 (28 - 12)/2 = 7 28: parent height 12: self height
+      width 22px
+      height 12px
+      bg-image('bulletin')
+      background-size 22px 12px
+      background-repeat no-repeat
+    .bulletin-text
+      vertical-align top
+      margin 0 4px
+      font-size 10px
+    .icon-keyboard_arrow_right
+      position absolute
+      font-size 10px
+      right 12px
+      top 8px
 </style>
